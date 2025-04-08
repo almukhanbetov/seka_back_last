@@ -1,10 +1,11 @@
 package routes
 
 import (
-	"github.com/gin-gonic/gin"
 	"seka_back_last/handlers"
 	"seka_back_last/ws"
+
 	"github.com/gin-contrib/cors"
+	"github.com/gin-gonic/gin"
 )
 
 func SetupRouter(hub *ws.Hub) *gin.Engine {
@@ -33,7 +34,12 @@ func SetupRouter(hub *ws.Hub) *gin.Engine {
 		api.GET("/drivers", handlers.GetDrivers)
 
 		api.POST("/car", handlers.CreateCar)
+		api.GET("/cars", handlers.GetCars)
+		api.PUT("/car/:id", handlers.UpdateCar)
+		api.GET("/trips/summary", handlers.GetTripSummary)
 		api.POST("/assign-car", handlers.AssignCarToDriver)
+		api.GET("/active-drivers", handlers.GetActiveDrivers)
+
 	}
 
 	return r

@@ -29,7 +29,9 @@ CREATE TABLE IF NOT EXISTS trips (
     start_time TIMESTAMP DEFAULT NOW(),
     end_time TIMESTAMP,
     status TEXT DEFAULT 'active',
-    rating INTEGER
+    rating INTEGER,
+    duration INTEGER DEFAULT 0,       -- ⏱ продолжительность в секундах
+    distance REAL DEFAULT 0           -- 📍 расстояние в метрах
 );
 
 CREATE TABLE IF NOT EXISTS location_logs (
@@ -49,6 +51,7 @@ CREATE TABLE IF NOT EXISTS status_logs (
     changed_at TIMESTAMP DEFAULT NOW()
 );
 
+-- 🔍 Индексы
 CREATE INDEX IF NOT EXISTS idx_users_status ON users(status);
 CREATE INDEX IF NOT EXISTS idx_location_trip_id ON location_logs(trip_id);
 CREATE INDEX IF NOT EXISTS idx_location_user_id ON location_logs(user_id);
